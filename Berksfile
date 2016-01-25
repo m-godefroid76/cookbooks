@@ -1,3 +1,7 @@
-source "https://supermarket.chef.io"
+site :opscode
 
-metadata
+cookbook 'git'
+cookbook 'apache2'
+cookbook 'nginx'
+cookbook 'swap'
+cookbook 'mysql'
