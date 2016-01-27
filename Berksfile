@@ -1,3 +1,3 @@
-site :opscode
+source "https://supermarket.chef.io"
 
-cookbook 'swap', '~> 0.3.8'
+metadata
