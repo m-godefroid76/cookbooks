@@ -1,5 +1,5 @@
 DEPENDENCIES
-  swap (~> 0.3.8)
+  swap
 
 GRAPH
   swap (0.3.8)
