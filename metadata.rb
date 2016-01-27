@@ -1,1 +1,0 @@
-name "opsworks_cookbook"
