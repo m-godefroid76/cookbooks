@@ -1,23 +1,22 @@
-# AWS Opsworks Cookbooks
+# opsworks_wordpress
 
+Chef cookbook for deploying WordPress to OpsWorks.
 
-The following custom Chef cookbooks are available to be used with [AWS OpsWorks](http://aws.amazon.com/opsworks/).
+## Supported Platforms
 
-## AWS-Ubuntu
+This cookbook is developed and test under Ubuntu 14.04. It should also work on other Linux platform, and please file issues if you get any problems.
 
-Configure an AWS Opsworks Ubuntu image with a swapspace. This is aimed at t1.micro instances to prevent "out of memory" issues.
+## OpsWorks Only?
 
-Available recipes for [AWS OpsWorks Lifecycle Events](http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook-events.html):
-* **Setup**: aws-ubuntu::setup; Adds memory swap
+Though this cookbook is created to be used in AWS OpsWorks, environment setup cookbook (i.e. `opsworks_wordpress::default`) recipe could be used in normal chef environment.
 
+## Recipes
 
-## Wordpress
+* `opsworks_wordpress::default` - Install HHVM / NGINX, add NGINX shared configs and set up crontab for wp-cron.
+* `opsworks_wordpress::deploy` - Download WordPress's latest version, set up NGINX site config, symlink wp-content from current deploy version of app to shared WordPress installation.
 
-Configure Wordpress to interact with the MySQL server. It can be used for a fresh install or a restore from a Backup using [BackWPup](http://wordpress.org/plugins/backwpup/).
+## License and Authors
 
-Available recipes for [AWS OpsWorks Lifecycle Events](http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook-events.html):
-* **Configure**: wordpress::configure; Create wp-config.php file along with Cronjob
+Author: Richard Lee (rl@polydice.com)
 
-
-## Other
-All other cookbooks are currently in a work-in-progress state and might not work.
+License: Apache
