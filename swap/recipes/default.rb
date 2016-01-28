@@ -7,4 +7,6 @@
 # All rights reserved - Do Not Redistribute
 #
 
-ruby swap_file '/mnt/swap' do size 2048 # MBs end
+ruby swap_file '/mnt/swap' do 
+  size 2048 # MBs 
+end
