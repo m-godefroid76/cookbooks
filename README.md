@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+# learn_chef_apache2
+
+TODO: Enter the cookbook description here.
+
+=======
 # cookbook-cookbook
 
 TODO: Enter the cookbook description here.
@@ -40,3 +46,4 @@ Include `cookbook` in your node's `run_list`:
 ## License and Authors
 
 Author:: YOUR_NAME (<YOUR_EMAIL>)
+>>>>>>> 677216e6f1629cce0368d1167dcade0e3439b69c
