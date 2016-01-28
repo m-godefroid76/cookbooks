@@ -1,11 +1,23 @@
+<<<<<<< HEAD
 .vagrant
 Berksfile.lock
+=======
+>>>>>>> 677216e6f1629cce0368d1167dcade0e3439b69c
 *~
 *#
 .#*
 \#*#
 .*.sw[a-z]
 *.un~
+<<<<<<< HEAD
+=======
+pkg/
+
+# Berkshelf
+.vagrant
+/cookbooks
+Berksfile.lock
+>>>>>>> 677216e6f1629cce0368d1167dcade0e3439b69c
 
 # Bundler
 Gemfile.lock
