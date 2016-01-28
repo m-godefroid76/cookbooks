@@ -9,8 +9,8 @@ describe 'swap::default' do
     it 'creates swap file' do
       @chef_run.should execute_command <<-EOF.gsub(/^\s{8}/, '')
         dd if=/dev/zero of=/var/swapfile bs=1M count=8192
-        chmod 600 /var/swapfile
-        mkswap /var/swapfile
+        chmod 600 /mnt/swap/swapfile
+        mkswap /mnt/swap/swapfile
       EOF
     end
 
