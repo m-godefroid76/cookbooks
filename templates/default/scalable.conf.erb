@@ -1,0 +1,22 @@
+# Managed by Chef for GraphyStories
+<VirtualHost *:80>
+  ServerAdmin atackoen@gmail.com
+
+  DocumentRoot /var/www/html
+  <Directory />
+          Options FollowSymLinks
+          AllowOverride None
+  </Directory>
+  <Directory /var/www/html >
+          Options Indexes FollowSymLinks MultiViews
+          AllowOverride all
+          Order allow,deny
+          allow from all
+  </Directory>
+
+  ErrorLog /var/log/apache2-error.log
+
+  LogLevel warn
+
+  ServerSignature Off
+</VirtualHost>
