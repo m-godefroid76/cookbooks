@@ -57,6 +57,6 @@ file '/etc/fuse.conf' do
   content  "user_allow_other"
 end
 
-execute 'mount uploads' do
-  command 'sudo s3fs node[:bucket] -o allow_other /var/www/html/wp-content/uploads'
+execute 'mount_uploads' do
+  command 'sudo s3fs devrestofactory -o allow_other /var/www/html/wp-content/uploads'
 end
