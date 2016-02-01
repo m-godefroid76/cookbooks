@@ -5,7 +5,8 @@ end
 # install fuse
 remote_file "/tmp/fuse-#{ node[:fuse][:version] }.tar.gz" do
   # source "http://downloads.sourceforge.net/project/fuse/fuse-2.X/#{ node[:fuse][:version] }/fuse-#{ node[:fuse][:version] }.tar.gz"
-  source "http://pkgs.fedoraproject.org/repo/pkgs/fuse/fuse-2.8.7.tar.gz/"
+  # source "http://pkgs.fedoraproject.org/repo/pkgs/fuse/fuse-2.8.7.tar.gz/"
+  source "ftp://ftp.gnome.org/mirror/temp/sf2015/f/fu/fuse/fuse-2.X/2.8.7/fuse-2.8.7.tar.gz"
   mode 0644
 end
 
