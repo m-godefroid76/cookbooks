@@ -41,14 +41,22 @@ bash "install s3fs" do
   not_if { File.exists?("/usr/bin/s3fs") }
 end
 
-#directory "/var/www/html/test" do
-#  mode "0755"
-#  owner "root"
-#  group "root"
-#  action :create
-#  recursive true
-#end
+directory "/var/www/html/wp-content/uploads" do
+  mode "0755"
+  owner "root"
+  group "root"
+  action :create
+  recursive true
+end
 
-#file '/etc/fuse.conf' do
-#  content  "user_allow_other"
-#end
+file '/etc/passwd-s3fs' do
+  content  "node[:access_key]:node[:secret_key]"
+end
+
+file '/etc/fuse.conf' do
+  content  "user_allow_other"
+end
+
+execute 'mount uploads' do
+  command 'sudo s3fs node[:bucket] -o allow_other /var/www/html/wp-content/uploads'
+end
