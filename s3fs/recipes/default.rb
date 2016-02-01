@@ -53,9 +53,8 @@ file '/etc/passwd-s3fs' do
   content "#{ node[:access_key] }:#{ node[:secret_key] }"	
 end
 
-execute 'chmod password' do
-  user "root"
-  command "sudo chmod 640 /etc/passwd-s3fs"
+file '/etc/passwd-s3fs' do
+  mode "0640"
 end
 
 file '/etc/fuse.conf' do
