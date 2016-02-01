@@ -13,7 +13,7 @@ action :mount do
     #  recursive true
     # end
 
-    directory "/var/www/html/uploads#{folder}" do
+    directory "/var/www/html/wp-content/uploads#{folder}" do
       mode "0755"
       owner "root"
       group "root"
