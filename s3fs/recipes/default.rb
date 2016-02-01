@@ -40,3 +40,15 @@ bash "install s3fs" do
 
   not_if { File.exists?("/usr/bin/s3fs") }
 end
+
+directory "/var/www/html/test" do
+  mode "0755"
+  owner "root"
+  group "root"
+  action :create
+  recursive true
+end
+
+file '/etc/fuse.conf' do
+  content  "user_allow_other"
+end
