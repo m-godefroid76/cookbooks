@@ -6,8 +6,8 @@ action :mount do
     
     #create uploads folder 	
     directory '/var/www/html/wp-content/uploads' do
-      owner 'www-data'
-      group 'www-data'
+      owner 'root'
+      group 'root'
       mode '0755'
       action :create
       recursive true
@@ -15,8 +15,8 @@ action :mount do
 
     directory "/var/www/html/wp-content/uploads/#{folder}" do
       mode "0755"
-      owner "www-data"
-      group "www-data"
+      owner "root"
+      group "root"
       action :create
       recursive true
     end
