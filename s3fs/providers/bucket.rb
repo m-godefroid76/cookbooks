@@ -4,10 +4,19 @@ action :mount do
     
     folder = @new_resource.mount_folder
     
+    #create uploads folder 	
+    directory '/var/www/html/wp-content/uploads' do
+      owner 'www-data'
+      group 'www-data'
+      mode '0755'
+      action :create
+      recursive true
+    end
+
     directory "/var/www/html/wp-content/uploads/#{folder}" do
       mode "0755"
-      owner "root"
-      group "root"
+      owner "www-data"
+      group "www-data"
       action :create
       recursive true
     end
