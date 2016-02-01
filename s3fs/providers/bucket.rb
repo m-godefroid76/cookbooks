@@ -4,7 +4,7 @@ action :mount do
     
     folder = @new_resource.mount_folder
     
-    directory "/mnt/test/#{folder}" do
+    directory "/var/www/html/wp-content/uploads/#{folder}" do
       mode "0755"
       owner "root"
       group "root"
@@ -20,7 +20,7 @@ action :mount do
       EOH
     
 ## a instrucao not_if parece nao funcionar devidamente  quando chamada varias vezes seguidas num loop      
-      not_if { ::File.directory?("/mnt/test/#{folder}/mysql/") }
+      not_if { ::File.directory?("/var/www/html/wp-content/uploads/#{folder}/mysql/") }
     end
   end
 
