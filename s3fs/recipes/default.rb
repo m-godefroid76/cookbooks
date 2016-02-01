@@ -50,7 +50,7 @@ directory "/var/www/html/wp-content/uploads" do
 end
 
 file '/etc/passwd-s3fs' do
-  content  "node[:access_key]:node[:secret_key]"
+  content "#{ node[:access_key] }:#{ node[:secret_key] }"	
 end
 
 file '/etc/fuse.conf' do
