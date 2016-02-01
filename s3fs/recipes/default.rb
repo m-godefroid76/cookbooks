@@ -16,6 +16,7 @@ bash "install fuse" do
   ./configure --prefix=/usr
   make
   sudo make install
+
   EOH
 
   not_if { File.exists?("/usr/bin/fusermount") }
