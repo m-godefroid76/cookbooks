@@ -1,3 +1,4 @@
+name             "s3fs"
 maintainer       "Tom Wilson"
 maintainer_email "tom@jackhq.com"
 license          "MIT"
