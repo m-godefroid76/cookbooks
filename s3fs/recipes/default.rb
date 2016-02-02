@@ -64,5 +64,5 @@ end
 
 execute 'mount uploads folder' do
   user "root"
-  command "sudo s3fs #{ node[:bucket] } -o allow_other /var/www/html/wp-content/uploads"
+  command "sudo s3fs #{ node[:bucket] } -o allow_other /mnt/var/www/html/wp-content/uploads"
 end
