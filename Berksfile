@@ -1,7 +1,5 @@
-source 'https://supermarket.chef.io'
+site :opscode
 
-metadata
-
-cookbook 'application_python', '= 2.0.2'
-cookbook 'build-essential', '~> 2.2.4'
-cookbook 'poise-python', '~> 1.2.1'
+cookbook 'application_python'
+cookbook 'build-essential'
+cookbook 'poise-python'
