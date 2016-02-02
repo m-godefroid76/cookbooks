@@ -1,5 +1,1 @@
-site :opscode
-
-cookbook 'application_python'
-cookbook 'build-essential'
-cookbook 'poise-python'
+source "https://supermarket.chef.io"
