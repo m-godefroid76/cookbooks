@@ -1,1 +1,1 @@
-name "wp-config"
+name "wpconfig"
