@@ -19,22 +19,16 @@
 define('WP_CACHE', true); //Added by WP-Cache Manager
 define( 'WPCACHEHOME', '/var/www/wp-content/plugins/wp-super-cache/' ); //Added by WP-Cache Manager
 
-define('DB_NAME', '<%= node[:DB_NAME] %>');
+define('DB_NAME', '<%= node['DB_NAME']' %>');
 
-<% @DB_USER do |user| -%>
-  /** MySQL database username */
-  define('DB_USER', '<%= user %>');
-<% end -%>
+/** MySQL database username */
+define('DB_USER', '<%= node['DB_USER']' %>');
 
-<% @DB_PASSWORD do |password| -%>
-  /** MySQL database password */
-  define('DB_PASSWORD', '<%= password %>');
-<% end -%>
+/** MySQL database password */
+define('DB_PASSWORD', '<%= node['DB_PASSWORD']' %>');
 
-<% @DB_HOSTNAME do |hostname| -%>
-  /** MySQL hostname */
-  define('DB_HOST', '<%= hostname %>');
-<% end -%>
+/** MySQL hostname */
+define('DB_HOST', '<%= node['DB_HOST']' %>');
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');
