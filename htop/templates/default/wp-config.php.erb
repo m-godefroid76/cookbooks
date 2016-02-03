@@ -109,14 +109,14 @@ define('WP_CRON_LOCK_TIMEOUT', 180);
 
 /* That's all, stop editing! Happy blogging. */
 define( 'WP_ALLOW_MULTISITE', true );
-/*
+
 define('MULTISITE', true);
 define('SUBDOMAIN_INSTALL', true);
-define('DOMAIN_CURRENT_SITE', 'restofactory.com');
+define('DOMAIN_CURRENT_SITE', '<%= node['DOMAIN_NAME'] %>');
 define('PATH_CURRENT_SITE', '/');
 define('SITE_ID_CURRENT_SITE', 1);
 define('BLOG_ID_CURRENT_SITE', 1);
-*/
+
 define('WP_DEFAULT_THEME', 'opengraphy_theme_1');
 
 /** Absolute path to the WordPress directory. */
