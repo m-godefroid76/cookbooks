@@ -8,7 +8,7 @@ version '2.3.1'
 
 recipe 'default', 'Installs and configures fail2ban'
 
-depends 'yum-epel'
+# depends 'yum-epel'
 
 %w(amazon centos debian fedora oracle redhat scientific ubuntu ).each do |os|
   supports os
