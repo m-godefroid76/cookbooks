@@ -15,14 +15,14 @@ template '/srv/www/wordpress/current/.htaccess' do
   mode '0444'
 end
 
-template '/srv/www/wordpress/current/opengraphy/config.php'
+template '/srv/www/wordpress/current/opengraphy/config.php' do
   source 'config.resto_be.erb'
   owner 'root'
   group 'root'
   mode '0644'
 end 
 
-template '/srv/www/wordpress/current/opengraphy/resto_fr/config.php'
+template '/srv/www/wordpress/current/opengraphy/resto_fr/config.php' do
   source 'config.resto_fr.erb'
   owner 'root'
   group 'root'
