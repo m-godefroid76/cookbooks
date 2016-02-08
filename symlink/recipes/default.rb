@@ -12,5 +12,19 @@ template '/srv/www/wordpress/current/.htaccess' do
   source 'htaccess.erb'
   owner 'root'
   group 'root'
-  mode '0644'
+  mode '0444'
 end
+
+template '/srv/www/wordpress/current/opengraphy/config.php'
+  source 'config.resto_be.erb'
+  owner 'root'
+  group 'root'
+  mode '0644'
+end 
+
+template '/srv/www/wordpress/current/opengraphy/resto_fr/config.php'
+  source 'config.resto_fr.erb'
+  owner 'root'
+  group 'root'
+  mode '0644'
+end 
