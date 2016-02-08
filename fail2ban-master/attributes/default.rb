@@ -42,24 +42,63 @@ default['fail2ban']['chain'] = 'INPUT'
 
 # custom filters.
 # format: { name: { failregex: '', ignoreregex: ''} }
-default['fail2ban']['filters'] = {}
+default['fail2ban']['filters'] = {
+  "apache-scan" => {
+    "failregex" => "[[]client <HOST>[]:[0-9]+] script '\/var\/www\/.*' not found or unable to stat",
+    "ignoreregex" => []                        
+  },
+  "http-get-dos" => {
+    "failregex" => "^<HOST>.*\"(GET|POST).*",
+    "ignoreregex" => []  
+  },
+  "wp-login" => {
+    "" => "^<HOST> .* \"POST .*wp-login.php",
+    "ignoreregex" => []     
+  }
+}
+
+
+
+default['fail2ban']['error_log'] = '/var/log/apache2/wordpress-error.log'
 
 case node['platform_family']
 when 'rhel', 'fedora'
   default['fail2ban']['auth_log'] = '/var/log/secure'
 when 'debian'
-  default['fail2ban']['auth_log'] = '/var/log/auth.log'
+  default['fail2ban']['auth_log'] = '/var/log/apache2/wordpress-access.log'
 end
 
 default['fail2ban']['services'] = {
-  'ssh' => {
-    'enabled' => 'true',
-    'port' => 'ssh',
-    'filter' => 'sshd',
-    'logpath' => node['fail2ban']['auth_log'],
-    'maxretry' => '6'
-  }
+   "ssh" => {
+        "enabled" => "true",
+        "port" => "ssh",
+        "filter" => "sshd",
+        "logpath" => node['fail2ban']['auth_log'],
+        "maxretry" => "6"
+     },
+  "apache-scan" => {
+        "enabled" => "true",
+        "port" => "http,https",
+        "filter" => "apache-scan",
+        "logpath" => node['fail2ban’][‘error_log'],
+        "maxretry" => "1"
+     },
+    "http-get-dos" => {
+      "enabled" => "true",
+        "port" => "http,https",
+        "filter" => "http-get-dos",
+        "logpath" => node['fail2ban']['auth_log'],
+        "maxretry" => "360"
+     },
+   "wp-login" => {
+    "enabled" => "true",
+        "port" => "http,https",
+        "filter" => "wp-login",
+    "logpath" => node['fail2ban']['auth_log'],
+    "maxretry" => "20",
+     }
 }
+
 
 case node['platform_family']
 when 'rhel', 'fedora'
