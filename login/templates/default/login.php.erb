@@ -1,0 +1,304 @@
+<?php
+include'/var/www/wp-config.php';
+// require_once'functions.php';
+require_once(ABSPATH . 'wp-load.php');
+// require_once(ABSPATH . 'wp-admin/includes/image.php');
+
+global $wpdb;
+
+
+$DB_USER     = '<%= node['DB_USER2'] %>';
+$DB_PASSWORD = '<%= node['DB_PASSWORD2'] %>';
+$DB_NAME     = '<%= node['DB_NAME2'] %>';
+$DB_HOST     = '<%= node['DB_HOST2'] %>';
+
+$newdb = new wpdb($DB_USER, $DB_PASSWORD, $DB_NAME, $DB_HOST);
+$newdb->show_errors();
+
+global $newdb;
+
+if(isset($_GET['login']) && $_GET['login'] == 'check'){
+
+  //print_r($_POST);
+  // echo 'SELECT * FROM wordpress.wp_users WHERE user_login = "'. $_POST['log'].'" OR user_email = "'. $_POST['log'].'"';
+  // die; 
+  $users = $wpdb->get_results('SELECT * FROM wordpress.wp_users WHERE user_login = "'. $_POST['log'].'" OR user_email = "'. $_POST['log'].'"');
+  
+  $password = $_POST['pwd'];
+  $users_pwd = $wpdb->get_results('SELECT user_pass FROM wordpress.wp_users WHERE user_login = "'. $_POST['log'].'" OR user_email = "'. $_POST['log'].'"');
+  $user_pwd = $users_pwd[0]->user_pass;
+  
+  // die;
+  // print_r($users);
+  
+  if(count($users) > 0){
+    
+    
+    
+    
+    // echo wp_check_password( $password, $hash, $user_id );
+    
+    $user_id =$users[0]->ID;
+    $check_pwd = wp_check_password( $password, $user_pwd, $user_id );
+  
+    $user = get_user_by( 'id', $user_id ); 
+    if( $user ) {
+      
+      if($check_pwd === true){
+        wp_set_current_user( $user_id, $user->user_login );
+          wp_set_auth_cookie( $user_id );
+          do_action( 'wp_login', $user->user_login );
+      }else{
+        header('Location: http://restofactory.com/login/');
+      }
+    }
+
+    if(is_user_logged_in()) {
+    global $current_user;
+      $blogs = get_blogs_of_user( $current_user->id );
+         if($blogs) {
+            
+          // print_r($blogs); 
+          $url = $blogs[0]->siteurl;
+        if(!isset($url)){
+          $url = $blogs[1]->siteurl;
+        }
+        header('Location:' . $url . '/wp-admin/');
+          
+         }
+    }
+    
+    /*
+    foreach ($users as $key => $value) {
+      
+      if(isset($value->user_email)){
+        $login = $value->login;
+        $user_email = $value->user_email;
+        // print_r($user_email);
+      }
+    }
+    */
+      
+  }else{
+    
+    if(!empty($_POST['pwd'])){
+      // echo 'SELECT * FROM wordpress.wp_users WHERE user_login = "'. $_POST['log'].'" OR user_email = "'. $_POST['log'].'"';
+      // die;
+      $users = $newdb->get_results('SELECT * FROM wordpress.rf_users WHERE user_login = "'. $_POST['log'].'" OR user_email = "'. $_POST['log'].'"');
+      // print_r($users);
+      
+      
+      if(count($users) > 0){
+        
+        // print_r($_POST);
+        
+        $hashed = base64_encode($_POST['log']);
+        $hashed1 = base64_encode($_POST['pwd']);
+        $hashed3 = $hashed . '+$#@#$+' . $hashed1;
+        
+        // header('Location: http://2.restofactory.com/login/');
+        header('Location: http://2.restofactory.com/login2/index.php?login=check&user=' . urlencode($hashed3));
+      }
+      
+    }else{
+      header('Location: http://restofactory.com/login/index.php?no=pass');
+    }   
+  }
+}
+?>
+<!DOCTYPE html>
+  <!--[if IE 8]>
+    <html xmlns="http://www.w3.org/1999/xhtml" class="ie8" lang="en-US">
+  <![endif]-->
+  <!--[if !(IE 8) ]><!-->
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+  <!--<![endif]-->
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Website Builder for Restaurants &rsaquo; Log In</title>
+  <link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=3.8' type='text/css' media='all' />
+<link rel='stylesheet' id='dashicons-css'  href='http://restofactory.com/wp-includes/css/dashicons.min.css?ver=3.8' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-admin-css'  href='http://restofactory.com/wp-admin/css/wp-admin.min.css?ver=3.8' type='text/css' media='all' />
+<link rel='stylesheet' id='buttons-css'  href='http://restofactory.com/wp-includes/css/buttons.min.css?ver=3.8' type='text/css' media='all' />
+<!-- <link rel='stylesheet' id='colors-fresh-css'  href='http://restofactory.com/wp-admin/css/colors.min.css?ver=3.8' type='text/css' media='all' /> -->
+<!--[if lte IE 7]>
+<link rel='stylesheet' id='ie-css'  href='http://restofactory.com/wp-admin/css/ie.min.css?ver=3.8' type='text/css' media='all' />
+<![endif]-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"> </script>
+  
+<script type='text/javascript' src='http://restofactory.com/wp-includes/js/jquery/jquery.js?ver=1.10.2'></script>
+<script type='text/javascript' src='http://restofactory.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+
+<meta name='robots' content='noindex,follow' />
+        <style type="text/css">
+            .login h1 a {
+              background-image: url("http://restofactory.com/wp-content/uploads/2014/03/logo_resto_factory_good2.png");
+              background-size: 200px 103px;
+              background-position: center top;
+              background-repeat: no-repeat;
+              color: rgb(153, 153, 153);
+              height: 103px;
+              font-size: 20px;
+              font-weight: 400;
+              line-height: 1.3em;
+              margin: 0px auto 25px;
+              padding: 0px;
+              text-decoration: none;
+              width: 200px;
+              text-indent: -9999px;
+              outline: 0px none;
+              overflow: hidden;
+              display: block;
+            }
+           .login label {
+              color: #777;
+              font-size: 14px;
+            }
+            #login {
+              margin-left: auto;
+              margin-right: auto;
+              max-width: 320px;
+            }
+            .loginform{
+              background-color: white;
+              box-shadow: 0 1px 3px rgba(0,0,0,.13);
+              padding: 10px 10px 10px 10px;
+            }
+            
+            .login form .input, .login input[type=text] {
+                font-size: 24px;
+                width: 100%;
+                padding: 3px;
+                margin: 2px 6px 16px 0;
+            }
+            input{
+                  text-rendering: auto;
+                  color: initial;
+                  letter-spacing: normal;
+                  word-spacing: normal;
+                  text-transform: none;
+                  text-indent: 0px;
+                  text-shadow: none;
+                  display: inline-block;
+                  text-align: start;
+                  margin: 0em 0em 0em 0em;
+                  font: 11px BlinkMacSystemFont;
+            }
+            .button-secondary {
+                display: inline-block;
+                text-decoration: none;
+                font-size: 13px;
+                line-height: 26px;
+                height: 28px;
+                margin: 0;
+                padding: 0 10px 1px;
+                cursor: pointer;
+                border-width: 1px;
+                border-style: solid;
+                -webkit-appearance: none;
+                -webkit-border-radius: 3px;
+                border-radius: 3px;
+                white-space: nowrap;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+            .wp-core-ui .button.button-large {
+                height: 30px;
+                line-height: 28px;
+                padding: 0 12px 2px;
+            }
+            .forgetmenot {
+              display: inline;
+            }
+            .submit{
+              display: inline;
+              float:right;
+              margin-bottom:20px;
+            }
+            p.submit {
+                text-align: left;
+                max-width: 100%;
+                margin-top: -15px;
+                padding-top: 10px;
+            }
+        </style>
+          <STYLE type="text/css">
+
+
+    #body {
+    color:black;
+    background-color:white;
+    background-image:url(http://restofactory.com/wp-admin/images/pattern_bg.jpg) !important;
+    background-repeat:repeat;
+  
+  }
+  #custom_footer{
+    background-color:5e605f;
+     position:fixed;
+       left:0px;
+       bottom:0px;
+       height:120px;
+       width:100%;
+       background:#999;
+       
+  }
+   </STYLE>
+  </head>
+  <body id="body" class="login login-action-login wp-core-ui">
+  <div id="login">
+    <h1><a href="http://restofactory.com/" title="Resto Factory Sites">Website Builder for Restaurants</a></h1>
+    <?php if(isset($_GET['no']) && $_GET['no'] == 'pass') echo '<div id="login_error"></div><br />'; ?>
+<form name="loginform" class="loginform" id="loginform" action="http://restofactory.com/login/index.php?login=check" method="post">
+  <p>
+    <label for="user_login"><?php _e('Username') ?><br />
+    <input type="text" name="log" id="user_login" class="input" value="" size="20" /></label>
+  </p>
+  <p>
+    <label for="user_pass"><?php _e('Password') ?><br />
+    <input type="password" name="pwd" id="user_pass" class="input" value="" size="20" /></label>
+  </p>
+  <div style="text-align:left">
+    <p class="forgetmenot"><label for="rememberme"><input name="rememberme" type="checkbox" id="rememberme" value="forever"  /><?php esc_attr_e('Remember Me'); ?></label></p>
+  <p class="submit">
+    <input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="Log In" />
+    <input type="hidden" name="redirect_to" value="http://restofactory.com/wp-admin/" />
+    <input type="hidden" name="testcookie" value="1" />
+  </p>
+  </div>
+</form>
+
+<p id="nav">
+  <a href="http://restofactory.com/wp-login.php?action=lostpassword" title="Password Lost and Found"><?php _e( 'Lost your password?' ); ?></a>
+</p>
+
+<script type="text/javascript">
+function wp_attempt_focus(){
+setTimeout( function(){ try{
+d = document.getElementById('user_login');
+d.focus();
+d.select();
+} catch(e){}
+}, 200);
+}
+
+wp_attempt_focus();
+
+if(typeof wpOnload=='function')wpOnload();
+</script>
+
+  <p id="backtoblog"><a href="http://restofactory.com/" title="Are you lost?">&larr; Back to Website Builder for Restaurants</a></p>
+  
+  </div>
+
+  <!--
+  <link rel='stylesheet' id='usr-style-css'  href='http://restofactory.com/wp-content/plugins/universal-star-rating/includes/usr_style.php?px=12&#038;ver=3.8' type='text/css' media='all' />
+  <div class="clear"></div>
+  <!--
+  <div id="custom_footer"><img style="position:absolute;
+    right:43%; bottom:0;" id="logo_footer" src="wp-admin/images/restofactory_logo_footer.png" /><div style="position:absolute;left:56%; bottom:1;color:white;">RestoFactory.be<br />
+Lozenberg 11 - 1932 Zaventem<br />
+Tel: +32 (0)2 702.10.79     Fax: + (0)2 726.86.48<br />
+www.restofactory.be     E-mail: contact@restofactory.be</div></div> -->
+  </body>
+  </html>
