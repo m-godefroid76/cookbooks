@@ -27,4 +27,4 @@ template '/srv/www/wordpress/current/opengraphy/resto_fr/config.php' do
   owner 'root'
   group 'root'
   mode '0644'
-end 
+end
