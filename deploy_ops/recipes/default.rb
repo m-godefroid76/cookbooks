@@ -1,6 +1,6 @@
 directory '/srv/www/wordpress/current/wp-content/cache' do
   owner 'deploy'
-  group 'www-data:www-data'
+  group 'www-data'
   mode '0755'
   action :create
 end
