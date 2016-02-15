@@ -43,10 +43,10 @@ template '/etc/logrotate.d/apache2' do
   mode '0644'
 end
 
-template '/home/ubuntu/.s3cfg' do
+template '/home/root/.s3cfg' do
   source 's3cfg.erb'
-  owner 'ubuntu'
-  group 'ubuntu'
+  owner 'root'
+  group 'root'
   mode '0600'
 end
 
