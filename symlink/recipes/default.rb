@@ -43,6 +43,13 @@ template '/etc/logrotate.d/apache2' do
   mode '0644'
 end
 
+bash "move logrotate.cron from daily to hourly" do
+  user 'root'
+  code <<-EOH
+  sudo mv /etc/cron.daily/logrotate /etc/cron.hourly/logrotate
+  EOH
+end
+
 directory '/srv/www/wordpress/current/wp-content/cache' do
   owner 'www-data'
   group 'www-data'
