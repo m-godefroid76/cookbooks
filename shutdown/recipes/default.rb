@@ -1,5 +1,5 @@
 bash "logrotate on shutdown" do
-  user 'root'
+  user 'ubuntu'
   code <<-EOH
   sudo logrotate -f /etc/logrotate.conf
   EOH
