@@ -6,7 +6,6 @@
 
 bash "logrotate on shutdown" do
   user 'root'
-  code <<-EOH
-  /usr/sbin/logrotate -f /etc/logrotate.conf
-  EOH
+  command 'sudo /usr/sbin/logrotate -f /etc/logrotate.conf'
+  action :nothing
 end
