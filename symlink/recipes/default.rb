@@ -43,6 +43,13 @@ template '/etc/logrotate.d/apache2' do
   mode '0644'
 end
 
+template '/home/ubuntu/.s3cfg' do
+  source 's3cfg.erb'
+  owner 'ubuntu'
+  group 'ubuntu'
+  mode '0600'
+end
+
 bash "move logrotate.cron from daily to hourly" do
   user 'root'
   code <<-EOH
