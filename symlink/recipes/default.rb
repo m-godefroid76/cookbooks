@@ -29,6 +29,14 @@ template '/srv/www/wordpress/current/opengraphy/resto_fr/config.php' do
   mode '0644'
 end
 
+template '/etc/logrotate.conf' do
+  source 'logrotate.conf.erb'
+  owner 'root'
+  group 'root'
+  mode '0644'
+end
+
+
 directory '/srv/www/wordpress/current/wp-content/cache' do
   owner 'www-data'
   group 'www-data'
