@@ -15,3 +15,9 @@ bash "unmount s3fs" do
   command 'sudo umount /srv/www/wordpress/current/wp-content/uploads/'
   action :nothing
 end
+
+bash "mv logrotate" do
+  user 'root'
+  command 'sudo mv /etc/cron.hourly/logrotate /etc/cron.daily/logrotate'
+  action :nothing
+end
