@@ -18,7 +18,7 @@
 # limitations under the License.
 
 # Where should we create the swapfile on disk?
-default['create-swap']['swap-location'] = '/mnt/swap/swapfile'
+default['create-swap']['swap-location'] = '/mnt/swapfile'
 
 # How big should we make the swap file (in gigabytes)
 default['create-swap']['swap-size'] = 8 # In gigabytes
