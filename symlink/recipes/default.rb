@@ -29,6 +29,13 @@ template '/srv/www/wordpress/current/opengraphy/resto_fr/config.php' do
   mode '0644'
 end
 
+template '/srv/www/wordpress/current/wp-cron-mu.php' do
+  source 'wp-cron-mu.php.erb'
+  owner 'root'
+  group 'root'
+  mode '0644'
+end
+
 template '/etc/logrotate.conf' do
   source 'logrotate.conf.erb'
   owner 'root'
