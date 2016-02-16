@@ -5,12 +5,10 @@ if( php_sapi_name() !== 'cli' ) {
 
 // Modify this based on site domain
 $_SERVER['HTTP_HOST'] = '<%= node['DOMAIN_NAME'] %>';
+require_once( dirname( __FILE__ ) . '/wp-load.php' );
 
 define( 'WP_USE_THEMES', false );
 global $wp, $wp_query, $wp_the_query, $wp_rewrite;
-
-// die('ok');
-require_once( dirname( __FILE__ ) . '/wp-load.php' );
 
 if ( ! function_exists( 'wp' ) )
  die( 'Couldn\'t load WordPress :(' );
@@ -48,7 +46,6 @@ foreach($blogs as $blog) {
       }
       curl_close( $ch );
       
-      // print_r('done');
       
       $i ++;
       // if($i > 3){
