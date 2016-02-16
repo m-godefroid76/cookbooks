@@ -57,12 +57,12 @@ template '/root/.s3cfg' do
   mode '0600'
 end
 
-bash "move logrotate.cron from daily to hourly" do
-  user 'root'
-  code <<-EOH
-  sudo mv /etc/cron.daily/logrotate /etc/cron.hourly/logrotate
-  EOH
-end
+# bash "move logrotate.cron from daily to hourly" do
+  # user 'root'
+  # code <<-EOH
+  # sudo mv /etc/cron.daily/logrotate /etc/cron.hourly/logrotate
+  # EOH
+# end
 
 directory '/srv/www/wordpress/current/wp-content/cache' do
   owner 'www-data'
