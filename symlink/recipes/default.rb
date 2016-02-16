@@ -4,9 +4,9 @@
 # encoding: utf-8
 #
 
-link '/mnt/srv/www/wordpress/current/wp-content/uploads' do
-  to '/mnt/uploads'
-end
+# link '/mnt/srv/www/wordpress/current/wp-content/uploads' do
+  # to '/mnt/uploads'
+# end
 
 template '/srv/www/wordpress/current/.htaccess' do
   source 'htaccess.erb'
