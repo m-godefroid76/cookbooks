@@ -57,12 +57,12 @@ template '/root/.s3cfg' do
   mode '0600'
 end
 
-# template '/srv/www/wordpress/current/health-check.php' do
-  # source 'health-check.php.erb'
-  # owner 'root'
-  # group 'root'
-  # mode '0644'
-# end
+template '/srv/www/wordpress/current/health-check.php' do
+  source 'health-check.php.erb'
+  owner 'root'
+  group 'root'
+  mode '0644'
+end
 
 bash "move logrotate.cron from daily to hourly" do
   user 'root'
