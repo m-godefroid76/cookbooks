@@ -36,19 +36,19 @@ template '/srv/www/wordpress/current/wp-cron-mu.php' do
   mode '0644'
 end
 
-# template '/etc/logrotate.conf' do
-  # source 'logrotate.conf.erb'
-  # owner 'root'
-  # group 'root'
-  # mode '0644'
-# end
+template '/etc/logrotate.conf' do
+  source 'logrotate.conf.erb'
+  owner 'root'
+  group 'root'
+  mode '0644'
+end
 
-# template '/etc/logrotate.d/apache2' do
-  # source 'apache2.erb'
-  # owner 'root'
-  # group 'root'
-  # mode '0644'
-# end
+template '/etc/logrotate.d/apache2' do
+  source 'apache2.erb'
+  owner 'root'
+  group 'root'
+  mode '0644'
+end
 
 template '/root/.s3cfg' do
   source 's3cfg.erb'
@@ -64,12 +64,12 @@ end
   # mode '0644'
 # end
 
-# bash "move logrotate.cron from daily to hourly" do
-  # user 'root'
-  # code <<-EOH
-  # sudo mv /etc/cron.daily/logrotate /etc/cron.hourly/logrotate
-  # EOH
-# end
+bash "move logrotate.cron from daily to hourly" do
+  user 'root'
+  code <<-EOH
+  sudo mv /etc/cron.daily/logrotate /etc/cron.hourly/logrotate
+  EOH
+end
 
 directory '/srv/www/wordpress/current/wp-content/cache' do
   owner 'www-data'
