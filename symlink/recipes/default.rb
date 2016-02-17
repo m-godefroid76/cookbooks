@@ -29,26 +29,26 @@ template '/srv/www/wordpress/current/opengraphy/resto_fr/config.php' do
   mode '0644'
 end
 
-template '/srv/www/wordpress/current/wp-cron-mu.php' do
-  source 'wp-cron-mu.php.erb'
-  owner 'root'
-  group 'root'
-  mode '0644'
-end
+# template '/srv/www/wordpress/current/wp-cron-mu.php' do
+  # source 'wp-cron-mu.php.erb'
+  # owner 'root'
+  # group 'root'
+  # mode '0644'
+# end
 
-template '/etc/logrotate.conf' do
-  source 'logrotate.conf.erb'
-  owner 'root'
-  group 'root'
-  mode '0644'
-end
+# template '/etc/logrotate.conf' do
+  # source 'logrotate.conf.erb'
+  # owner 'root'
+  # group 'root'
+  # mode '0644'
+# end
 
-template '/etc/logrotate.d/apache2' do
-  source 'apache2.erb'
-  owner 'root'
-  group 'root'
-  mode '0644'
-end
+# template '/etc/logrotate.d/apache2' do
+  # source 'apache2.erb'
+  # owner 'root'
+  # group 'root'
+  # mode '0644'
+# end
 
 template '/root/.s3cfg' do
   source 's3cfg.erb'
@@ -57,12 +57,12 @@ template '/root/.s3cfg' do
   mode '0600'
 end
 
-template '/srv/www/wordpress/current/health-check.php' do
-  source 'health-check.php.erb'
-  owner 'root'
-  group 'root'
-  mode '0644'
-end
+# template '/srv/www/wordpress/current/health-check.php' do
+  # source 'health-check.php.erb'
+  # owner 'root'
+  # group 'root'
+  # mode '0644'
+# end
 
 # bash "move logrotate.cron from daily to hourly" do
   # user 'root'
