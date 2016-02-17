@@ -59,13 +59,13 @@ default['fail2ban']['filters'] = {
 
 
 
-default['fail2ban']['error_log'] = '/var/log/apache2/wordpress-error.log*'
+default['fail2ban']['error_log'] = '/var/log/apache2/wordpress-error.log'
 
 case node['platform_family']
 when 'rhel', 'fedora'
   default['fail2ban']['auth_log'] = '/var/log/secure'
 when 'debian'
-  default['fail2ban']['auth_log'] = '/var/log/apache2/wordpress-access.log*'
+  default['fail2ban']['auth_log'] = '/var/log/apache2/wordpress-access.log'
 end
 
 default['fail2ban']['services'] = {
