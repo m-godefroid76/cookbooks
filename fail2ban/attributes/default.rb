@@ -80,7 +80,7 @@ default['fail2ban']['services'] = {
         "enabled" => "true",
         "port" => "http,https",
         "filter" => "apache-scan",
-        "logpath" => node['fail2ban’][‘error_log'],
+        "logpath" => node['fail2ban']['error_log'],
         "maxretry" => "1"
      },
     "http-get-dos" => {
