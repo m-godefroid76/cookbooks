@@ -16,8 +16,9 @@ bash "unmount s3fs" do
   action :nothing
 end
 
-# bash "mv logrotate" do
-  # user 'root'
-  # command 'sudo mv /etc/cron.hourly/logrotate /etc/cron.daily/logrotate'
-  # action :nothing
-# end
+bash "move logrotate.cron from daily to hourly" do
+  user 'root'
+  code <<-EOH
+  sudo mv /etc/cron.hourly/logrotate /etc/cron.daily/logrotate
+  EOH
+end
