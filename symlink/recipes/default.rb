@@ -67,7 +67,7 @@ end
 bash "move logrotate.cron from daily to hourly" do
   user 'root'
   code <<-EOH
-  sudo mv /etc/cron.daily/logrotate /etc/cron.hourly/logrotate
+  sudo cp /etc/cron.daily/logrotate /etc/cron.hourly/logrotate
   EOH
 end
 
