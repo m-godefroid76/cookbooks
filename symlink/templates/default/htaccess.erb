@@ -1,4 +1,6 @@
 RewriteEngine On
+
+RewriteCond %{REQUEST_URI} !^/health-check$
 RewriteBase /
 RewriteRule ^index\.php$ - [L]
 
