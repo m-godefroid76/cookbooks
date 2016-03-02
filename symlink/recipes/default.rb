@@ -71,6 +71,13 @@ bash "move logrotate.cron from daily to hourly" do
   EOH
 end
 
+template '/srv/www/wordpress/current/wp-content/w3tc-config/master.php' do
+  source 'master.php.erb'
+  owner 'www-data'
+  group 'www-data'
+  mode '0644'
+end
+
 directory '/srv/www/wordpress/current/wp-content/cache' do
   owner 'www-data'
   group 'www-data'
