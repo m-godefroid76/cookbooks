@@ -64,5 +64,5 @@ end
 
 execute 'mount uploads folder' do
   user "root"
-  command "sudo s3fs #{ node[:bucket] } -o allow_other /mnt/uploads"
+  command "sudo s3fs #{ node[:bucket] } -o allow_other,use_cache=/tmp/cache /mnt/uploads"
 end
