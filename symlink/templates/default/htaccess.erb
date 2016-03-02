@@ -44,3 +44,10 @@ ExpiresDefault "access 1 month"
     </IfModule>
 </IfModule>
 # END W3TC Browser Cache
+
+# BEGIN W3TC CDN
+<FilesMatch "\.(ttf|ttc|otf|eot|woff|font.css)$">
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+</IfModule>
+</FilesMatc
