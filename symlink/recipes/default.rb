@@ -64,18 +64,39 @@ template '/srv/www/wordpress/current/health-check.php' do
   mode '0644'
 end
 
-bash "move logrotate.cron from daily to hourly" do
-  user 'root'
-  code <<-EOH
-  sudo cp /etc/cron.daily/logrotate /etc/cron.hourly/logrotate
-  EOH
+directory '/srv/www/wordpress/current/wp-content/w3tc-config' do
+  owner 'www-data'
+  group 'www-data'
+  mode '0777'
+  action :create
 end
 
 template '/srv/www/wordpress/current/wp-content/w3tc-config/master.php' do
   source 'master.php.erb'
   owner 'www-data'
   group 'www-data'
-  mode '0644'
+  mode '0777'
+end
+
+template '/srv/www/wordpress/current/wp-content/w3tc-config/master-admin.php' do
+  source 'master-admin.php.erb'
+  owner 'www-data'
+  group 'www-data'
+  mode '0777'
+end
+
+template '/srv/www/wordpress/current/wp-content/w3tc-config/index.html' do
+  source 'index.html.erb'
+  owner 'www-data'
+  group 'www-data'
+  mode '0777'
+end
+
+bash "move logrotate.cron from daily to hourly" do
+  user 'root'
+  code <<-EOH
+  sudo cp /etc/cron.daily/logrotate /etc/cron.hourly/logrotate
+  EOH
 end
 
 directory '/srv/www/wordpress/current/wp-content/cache' do
@@ -85,8 +106,8 @@ directory '/srv/www/wordpress/current/wp-content/cache' do
   action :create
 end
 
-node[:deploy].each do |application, deploy|
-  cache_config = "#{deploy[:deploy_to]}/current/wp-content/wp-cache-config.php"
-  execute "chmod -R 666 #{cache_config}" do
-  end
-end
+# node[:deploy].each do |application, deploy|
+  # cache_config = "#{deploy[:deploy_to]}/current/wp-content/wp-cache-config.php"
+  # execute "chmod -R 666 #{cache_config}" do
+  # end
+# end

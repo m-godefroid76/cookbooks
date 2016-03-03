@@ -4,11 +4,17 @@
 # encoding: utf-8
 #
 
+%w{ memcached }.each do |pkg|
+ package pkg
+end
+
 template '/etc/php5/mods-available/memcache.ini' do
-  source 'memcached.ini.erb'
+  source 'memcache.ini.erb'
   owner 'root'
   group 'root'
   mode '0644'
 end
 
-notifies :restart, 'service[apache2]'
+service "apache2" do
+  action :restart
+end
