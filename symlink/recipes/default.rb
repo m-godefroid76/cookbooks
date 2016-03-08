@@ -8,6 +8,14 @@ link '/mnt/srv/www/wordpress/current/wp-content/uploads' do
   to '/mnt/uploads'
 end
 
+link '/mnt/srv/www/wordpress/template' do
+  to '/mnt/srv/www/wordpress/wp-content/uploads/template'
+end
+
+link '/mnt/srv/www/wordpress/content' do
+  to '/mnt/srv/www/wordpress/wp-content/uploads/content'
+end
+
 template '/srv/www/wordpress/current/.htaccess' do
   source 'htaccess.erb'
   owner 'root'
