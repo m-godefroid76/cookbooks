@@ -4,17 +4,17 @@
 # encoding: utf-8
 #
 
-link '/mnt/srv/www/wordpress/current/wp-content/uploads' do
-  to '/mnt/uploads'
-end
+# link '/mnt/srv/www/wordpress/current/wp-content/uploads' do
+  # to '/mnt/uploads'
+# end
 
-link '/mnt/srv/www/wordpress/template' do
-  to '/mnt/srv/www/wordpress/wp-content/uploads/template'
-end
+# link '/mnt/srv/www/wordpress/template' do
+  # to '/mnt/srv/www/wordpress/wp-content/uploads/template'
+# end
 
-link '/mnt/srv/www/wordpress/content' do
-  to '/mnt/srv/www/wordpress/wp-content/uploads/content'
-end
+# link '/mnt/srv/www/wordpress/content' do
+  # to '/mnt/srv/www/wordpress/wp-content/uploads/content'
+# end
 
 template '/srv/www/wordpress/current/.htaccess' do
   source 'htaccess.erb'
@@ -191,6 +191,7 @@ directory '/srv/www/wordpress/current/wp-content/cache/cron_reviews' do
   mode '0777'
   action :create
 end
+
 directory '/srv/www/wordpress/current/wp-content/cache/cron_reviews/cron_update_reviews/' do
   owner 'www-data'
   group 'www-data'
