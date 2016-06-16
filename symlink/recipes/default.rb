@@ -191,6 +191,12 @@ directory '/srv/www/wordpress/current/wp-content/cache/cron_reviews' do
   mode '0777'
   action :create
 end
+directory '/srv/www/wordpress/current/wp-content/cache/cron_reviews/cron_update_reviews/' do
+  owner 'www-data'
+  group 'www-data'
+  mode '0777'
+  action :create
+end
 
 node[:deploy].each do |application, deploy|
   cache_config = "#{deploy[:deploy_to]}/current/wp-content/w3tc-config"
