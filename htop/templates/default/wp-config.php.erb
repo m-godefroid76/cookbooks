@@ -83,6 +83,8 @@ $table_prefix  = 'wp_';
 define('WP_DEBUG', false);
 define('DISABLE_WP_CRON', 'true');
 define('SUNRISE', 'on');
+define( 'DBI_AWS_ACCESS_KEY_ID', '<%= node['access_key'] %>' );
+define( 'DBI_AWS_SECRET_ACCESS_KEY', '<%= node['secret_key'] %>' );
 /* Multisite */
 define( 'WP_ALLOW_MULTISITE', true );
 /* That's all, stop editing! Happy blogging. */
