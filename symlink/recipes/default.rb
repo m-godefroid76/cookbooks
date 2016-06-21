@@ -217,6 +217,12 @@ node[:deploy].each do |application, deploy|
   end
 end
 
+node[:deploy].each do |application, deploy|
+  srv_folder = "/srv/www"
+  execute "chown -R www-data:www-data #{srv_folder}" do
+  end
+end
+
 %w{ awscli }.each do |pkg|
   package pkg
 end
