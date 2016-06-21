@@ -124,21 +124,21 @@ end
 directory '/srv/www/wordpress/current/wp-content/uploads' do
   owner 'www-data'
   group 'www-data'
-  mode '0755'
+  mode '0777'
   action :create
 end
 
 directory '/srv/www/wordpress/current/wp-content/uploads/cron_reviews' do
   owner 'www-data'
   group 'www-data'
-  mode '0755'
+  mode '0777'
   action :create
 end
 
 directory '/srv/www/wordpress/current/wp-content/uploads/cron_reviews/cron_update_reviews' do
   owner 'www-data'
   group 'www-data'
-  mode '0755'
+  mode '0777'
   action :create
 end
 
