@@ -157,26 +157,48 @@ directory '/srv/www/wordpress/current/wp-content/cache' do
   action :create
 end
 
-directory '/var/www/.aws' do
-  owner 'www-data'
-  group 'www-data'
+# directory '/var/www/.aws' do
+  # owner 'www-data'
+  # group 'www-data'
+  # mode '0755'
+  # action :create
+# end
+# 
+# template '/var/www/.aws/config' do
+  # source 'config.erb'
+  # owner 'www-data'
+  # group 'www-data'
+  # mode '400'
+# end
+
+
+directory '/root/.aws' do
+  owner 'root'
+  group 'root'
   mode '0755'
   action :create
 end
 
-template '/var/www/.aws/config' do
+template '/root/.aws/config' do
   source 'config.erb'
-  owner 'www-data'
-  group 'www-data'
+  owner 'root'
+  group 'root'
   mode '400'
 end
 
-# bash "download enfold.css from s3" do
-  # user 'root'
-  # code <<-EOH 
-  # aws s3 cp s3://dev2-webfactory/wp-content/uploads/ /srv/www/wordpress/current/wp-content/uploads/ --recursive  --exclude "*"  --include "*enfold.css"
-  # EOH
-# end
+bash "download enfold.css from s3" do
+  user 'root'
+  code <<-EOH  
+  aws s3 cp s3://#{ node[:bucket] }/wp-content/uploads/dynamic_avia/ /srv/www/wordpress/current/wp-content/uploads/ --recursive
+  EOH
+end
+
+bash "download specific folders" do
+  user 'root'
+  code <<-EOH  
+  aws s3 cp s3://#{ node[:bucket] }/wp-content/uploads/ /srv/www/wordpress/current/wp-content/uploads/ --recursive  --exclude "*"  --include "*sites/41/*" --include "*sites/53/*"
+  EOH
+end
 
 directory '/srv/www/wordpress/current/wp-content/cache' do
   owner 'www-data'

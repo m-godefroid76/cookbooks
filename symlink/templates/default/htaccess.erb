@@ -3,7 +3,13 @@ RewriteCond %{REQUEST_URI} !^/health-check$
 RewriteBase /
 RewriteRule ^index\.php$ - [L]
 
-RewriteCond %{HTTP_HOST} ^(.*)<%= node['DOMAIN_NAME'] %>$ [NC]
+# RewriteCond %{HTTP_HOST} ^(.*)<%= node['DOMAIN_NAME'] %>$ [NC]
+
+RewriteCond %{HTTP_HOST} !^www.lescalerestaurant.fr$ [NC]
+RewriteCond %{HTTP_HOST} !^www.restaurantlapostrophe.fr$ [NC]
+RewriteCond %{HTTP_HOST} !^restaurant-pagliacci.be$ [NC]
+RewriteCond %{HTTP_HOST} !^restaurant-pagliacci.be$ [NC]
+RewriteCond %{HTTP_HOST} !^www.chezmimi62.fr$ [NC]
 RewriteCond %{REQUEST_URI}  /uploads/
 RewriteRule ^(.+\.(png|gif|jpe?g))$ http://<%= node['CDN_CNAME'] %>/$1 [L,R=301]
 
