@@ -12,10 +12,10 @@ return array(
 	'minify.css.engine' => 'css',
 	'dbcache.enabled' => false,
 	'dbcache.engine' => 'file',
-	'objectcache.enabled' => false,
+	'objectcache.enabled' => true,
 	'objectcache.engine' => 'file',
 	'browsercache.enabled' => true,
-	'cdn.enabled' => true,
+	'cdn.enabled' => false,
 	'cdn.engine' => 'cf',
 	'varnish.enabled' => false,
 	'varnish.servers' => array(
@@ -50,10 +50,10 @@ return array(
 	'cdn.custom.enable' => false,
 	'cdn.import.external' => false,
 	'cdn.canonical_header' => false,
-	'cdn.cf2.key' => '<%= node['access_key'] %>',
-	'cdn.cf2.secret' => '<%= node['secret_key'] %>',
+	'cdn.cf2.key' => 'AKIAJWPMEOH3JYAXGHVA',
+	'cdn.cf2.secret' => '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',
 	'cdn.cf2.ssl' => 'auto',
-	'cdn.cf2.id' => '<%= node['CDN_ID'] %>',
+	'cdn.cf2.id' => 'd1w3jdldoueoqr',
 	'cdn.reject.ssl' => false,
 	'cdn.reject.logged_roles' => false,
 	'cdn.reject.roles' => array(
@@ -86,7 +86,7 @@ return array(
 		4 => '*.css',
 	),
 	'cdn.cf2.cname' => array(
-		0 => '<%= node['CDN_CNAME'] %>',
+		0 => 'cdn-rfv1.dev.restofactory.com',
 	),
 	'cdn.debug' => false,
 	'notes.need_empty_pgcache' => true,
@@ -123,7 +123,7 @@ return array(
 	'browsercache.other.compression' => true,
 	'browsercache.other.replace' => true,
 	'browsercache.other.nocookies' => false,
-	'browsercache.timestamp' => '1465305372',
+	'browsercache.timestamp' => '1466600989',
 	'notes.plugins_updated' => false,
 	'cluster.messagebus.debug' => false,
 	'cluster.messagebus.enabled' => false,
@@ -384,9 +384,9 @@ return array(
 	'cdn.s3.cname' => array(
 	),
 	'cdn.s3.ssl' => 'auto',
-	'cdn.cf.bucket' => '<%= node['bucket'] %>',
+	'cdn.cf.bucket' => 'devrestofactory',
 	'cdn.cf.cname' => array(
-		0 => '<%= node['CDN_CNAME'] %>',
+		0 => 'cdn-rfv1.dev.restofactory.com',
 	),
 	'cdn.cf.ssl' => 'auto',
 	'cdn.rscf.user' => '',
@@ -719,7 +719,7 @@ return array(
 	),
 	'extensions.active' => array(
 	),
-	'cdn.cf.key' => '<%= node['access_key'] %>',
-	'cdn.cf.secret' => '<%= node['secret_key'] %>',
-	'cdn.cf.id' => '<%= node['CDN_ID'] %>',
+	'cdn.cf.key' => '',
+	'cdn.cf.secret' => '',
+	'cdn.cf.id' => 'd1w3jdldoueoqr',
 );
