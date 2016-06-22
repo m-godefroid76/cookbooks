@@ -186,12 +186,12 @@ template '/root/.aws/config' do
   mode '400'
 end
 
-bash "download enfold.css from s3" do
-  user 'root'
-  code <<-EOH  
-  aws s3 cp s3://#{ node[:bucket] }/wp-content/uploads/dynamic_avia/ /srv/www/wordpress/current/wp-content/uploads/ --recursive
-  EOH
-end
+# bash "download enfold.css from s3" do
+  # user 'root'
+  # code <<-EOH  
+  # aws s3 cp s3://devrestofactory/wp-content/uploads/dynamic_avia/ /srv/www/wordpress/current/wp-content/uploads/ --recursive
+  # EOH
+# end
 
 # bash "download specific folders" do
   # user 'root'
