@@ -193,12 +193,12 @@ bash "download enfold.css from s3" do
   EOH
 end
 
-bash "download specific folders" do
-  user 'root'
-  code <<-EOH  
-  aws s3 cp s3://#{ node[:bucket] }/wp-content/uploads/ /srv/www/wordpress/current/wp-content/uploads/ --recursive  --exclude "*"  --include "*sites/41/*" --include "*sites/53/*"
-  EOH
-end
+# bash "download specific folders" do
+  # user 'root'
+  # code <<-EOH  
+  # aws s3 cp s3://#{ node[:bucket] }/wp-content/uploads/ /srv/www/wordpress/current/wp-content/uploads/ --recursive  --exclude "*"  --include "*sites/41/*" --include "*sites/53/*"
+  # EOH
+# end
 
 directory '/srv/www/wordpress/current/wp-content/cache' do
   owner 'www-data'
