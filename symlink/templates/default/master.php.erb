@@ -50,10 +50,10 @@ return array(
 	'cdn.custom.enable' => false,
 	'cdn.import.external' => false,
 	'cdn.canonical_header' => false,
-	'cdn.cf2.key' => 'AKIAJWPMEOH3JYAXGHVA',
-	'cdn.cf2.secret' => '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',
+	'cdn.cf2.key' => '<%= node['access_key'] %>',
+	'cdn.cf2.secret' => '<%= node['secret_key'] %>',
 	'cdn.cf2.ssl' => 'auto',
-	'cdn.cf2.id' => 'd1w3jdldoueoqr',
+	'cdn.cf2.id' => '<%= node['CDN_ID'] %>',
 	'cdn.reject.ssl' => false,
 	'cdn.reject.logged_roles' => false,
 	'cdn.reject.roles' => array(
