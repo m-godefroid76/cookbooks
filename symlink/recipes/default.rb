@@ -244,11 +244,6 @@ node[:deploy].each do |application, deploy|
   execute "chown -R www-data:www-data #{srv_folder}" do
   end
 end
-node[:deploy].each do |application, deploy|
-  folder = "/srv/www/wordpres/current/wp-content/cache/"
-  execute "chmod -R 777 #{folder}" do
-  end
-end
 
 %w{ awscli }.each do |pkg|
   package pkg
